@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   programs.nixvim.plugins = {
     lsp-format.enable = true;
     lsp = {
@@ -13,6 +13,12 @@
         html.enable = true;
         svelte.enable = true;
         astro.enable = true;
+        intelephense = {
+          enable = true;
+          package = pkgs.intelephense;
+        };
+        #phpactor.enable = true; # TODO: test out both
+        volar.enable = true;
       };
     };
     none-ls = {
@@ -33,6 +39,11 @@
           shfmt.enable = true;
           golines.enable = true;
           gofumpt.enable = true;
+          #pint.enable = true;
+          blade_formatter = {
+            enable = true;
+            package = pkgs.blade-formatter;
+          };
         };
       };
     };

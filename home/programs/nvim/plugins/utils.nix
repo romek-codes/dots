@@ -6,6 +6,8 @@
     };
     plugins = {
       bufferline.enable = true;
+      comment.enable = true;
+      spectre.enable = true;
       copilot-vim = {
         enable = true;
         # FIXME: Temp issue solving
@@ -26,12 +28,10 @@
         };
       };
     };
-    keymaps = [
-      {
-        key = "<leader>ct";
-        action = "<cmd>AerialToggle<cr>";
-        options.desc = "Aerial (tags)";
-      }
-    ];
+    keymaps = [{
+      key = "<leader>ct";
+      action = "<cmd>AerialToggle<cr>";
+      options.desc = "Aerial (tags)";
+    }];
   };
 }

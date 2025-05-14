@@ -1,18 +1,17 @@
 { pkgs, ... }: {
   wayland.windowManager.hyprland.settings = {
     bind = [
-      "$mod,RETURN, exec, uwsm app -- ${pkgs.kitty}/bin/kitty" # Kitty
-      "$mod,E, exec,  uwsm app -- ${pkgs.xfce.thunar}/bin/thunar" # Thunar
-      #"$mod,B, exec,  uwsm app -- zen-beta" # Zen Browser
+      "$mod,RETURN, exec, uwsm app -- ${pkgs.kitty}/bin/kitty" # Kitty (Terminal)
+      "$mod,E, exec,  uwsm app -- ${pkgs.xfce.thunar}/bin/thunar" # Thunar (File explorer)
       "$ctrlMod,L, exec,  uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" # Lock
       "$mod,X, exec, powermenu" # Powermenu
       "$mod,P, exec, menu" # Launcher
-      "$shiftMod,K, exec, bitwarden" # Launcher
+      "$ctrlMod,K, exec, bitwarden" # Rofi-rbw (Bitwarden)
       "$mod,C, exec, quickmenu" # Quickmenu
-      "$shiftMod,SPACE, exec, hyprfocus-toggle" # Toggle HyprFocus
-      #"$mod,P, exec,  uwsm app -- ${pkgs.planify}/bin/io.github.alainm23.planify" # Planify
-      "$mod,SPACE,exec,switch=$(hyprctl devices -j | jq -r '.keyboards[] | .active_keymap' | uniq -c | [ $(wc -l) -eq 1 ] && echo 'next' || echo '0'); for device in $(hyprctl devices -j | jq -r '.keyboards[] | .name'); do hyprctl switchxkblayout $device $switch; done; activeKeymap=$(hyprctl devices -j | jq -r '.keyboards[0] | .active_keymap'); if [ $switch == '0' ]; then resetStr='(reset)'; else resetStr=''; fi; hyprctl notify -1 1500 0 '$activeKeymap $resetStr';"
-
+      "$mod,Z,exec,rofi -show calc -modi calc -no-show-match -no-sort"
+      ''
+        $mod,SPACE,exec,switch=$(hyprctl devices -j | jq -r '.keyboards[] | .active_keymap' | uniq -c | [ $(wc -l) -eq 1 ] && echo "next" || echo "0"); for device in $(hyprctl devices -j | jq -r '.keyboards[] | .name'); do hyprctl switchxkblayout $device $switch; done; activeKeymap=$(hyprctl devices -j | jq -r '.keyboards[0] | .active_keymap'); if [ $switch == "0" ]; then resetStr="(reset)"; else resetStr=""; fi; hyprctl notify -1 1500 0 "$activeKeymap $resetStr"; # Change keyboard layout
+      ''
       "$mod,Q, killactive," # Close window
       "$mod,T, togglefloating," # Toggle Floating
       "$mod,F, fullscreen" # Toggle Fullscreen
@@ -20,11 +19,6 @@
       "$mod,j, movefocus, d" # Move focus Down
       "$mod,k, movefocus, u" # Move focus Up
       "$mod,l, movefocus, r" # Move focus Right
-
-      #"$shiftMod,up, focusmonitor, -1" # Focus previous monitor
-      #"$shiftMod,down, focusmonitor, 1" # Focus next monitor
-      "$shiftMod,left, layoutmsg, addmaster" # Add to master
-      "$shiftMod,right, layoutmsg, removemaster" # Remove from master
 
       "$mod,PRINT, exec, screenshot region" # Screenshot region
       ",PRINT, exec, screenshot monitor" # Screenshot monitor

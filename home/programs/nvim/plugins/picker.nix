@@ -63,11 +63,6 @@
         options.desc = "Command History";
       }
       {
-        key = "<leader>e";
-        action = "<cmd>lua Snacks.explorer()<cr>";
-        options.desc = "File Explorer";
-      }
-      {
         key = "-";
         action = "<cmd>Oil<cr>";
         options.desc = "Oil";

@@ -1,6 +1,6 @@
 { config, ... }: {
   imports =
-    [ ./variables.nix ../../nixos/shared.nix ./hardware-configuration.nix ];
+    [ ../../nixos/shared.nix ./hardware-configuration.nix ./variables.nix ];
 
   home-manager.users."${config.var.username}" = import ./home.nix;
 

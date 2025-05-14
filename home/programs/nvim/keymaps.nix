@@ -151,6 +151,140 @@
         action = "<cmd>close<cr>";
         options.desc = "Close";
       }
+
+      {
+        key = "<leader>q";
+        action = "<cmd>quit<cr>";
+        options.desc = "Quit";
+      }
+      {
+        key = "<leader>w";
+        action = "<cmd>write<cr>";
+        options.desc = "Save";
+      }
+      # {
+      #   key = "<leader>/";
+      #   action =
+      #     "<cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>";
+      #   options.desc = "Toggle comment";
+      # }
+      {
+        key = "]b";
+        action = "<cmd>lua require('astrocore.buffer').nav(vim.v.count1)<cr>";
+        options.desc = "Next buffer";
+      }
+      {
+        key = "[b";
+        action = "<cmd>lua require('astrocore.buffer').nav(-vim.v.count1)<cr>";
+        options.desc = "Previous buffer";
+      }
+      {
+        key = "<Leader>bd";
+        action =
+          "<cmd>lua require('astroui.status.heirline').buffer_picker(function(bufnr) require('astrocore.buffer').close(bufnr) end)<cr>";
+        options.desc = "Close buffer from tabline";
+      }
+      {
+        key = "<Leader>lpg";
+        action = "<cmd>lua require('neogen').generate()<cr>";
+        options.desc = "Generate documentation";
+      }
+      {
+        key = "<Leader>lpc";
+        action = "<cmd>lua require('neogen').generate({ type = 'class' })<cr>";
+        options.desc = "Generate class documentation";
+      }
+      {
+        key = "<Leader>lpf";
+        action = "<cmd>lua require('neogen').generate({ type = 'func' })<cr>";
+        options.desc = "Generate function documentation";
+      }
+      {
+        key = "<Leader>lh";
+        action = "<cmd>lua require('lsp_lines').toggle()<cr>";
+        options.desc = "Toggle_lsp_lines";
+      }
+      {
+        key = "<Leader>e";
+        action = "<cmd>lua MiniFiles.open()<cr>";
+        options.desc = "Show explorer";
+      }
+      {
+        key = "<Leader>ld";
+        action = "<cmd>lua vim.diagnostic.setqflist()<cr>";
+        options.desc = "Show issues";
+      }
+      {
+        key = "<Leader>os";
+        action = "<cmd>ObsidianSearch<cr>";
+        options.desc = "Search";
+      }
+      {
+        key = "<Leader>oo";
+        action = "<cmd>ObsidianOpen<cr>";
+        options.desc = "Open";
+      }
+      {
+        key = "<Leader>ot";
+        action = "<cmd>ObsidianTags<cr>";
+        options.desc = "Tags";
+      }
+      {
+        key = "<Leader>on";
+        action = "<cmd>ObsidianNew<cr>";
+        options.desc = "New note";
+      }
+      {
+        key = "<Leader>og";
+        action = "<cmd>ObsidianFollowLink<cr>";
+        options.desc = "Follow link";
+      }
+      {
+        key = "<Leader>nh";
+        action = "<cmd>Noice history<cr>";
+        options.desc = "History";
+      }
+      {
+        key = "<Leader>nd";
+        action = "<cmd>Noice dismiss<cr>";
+        options.desc = "Dismiss";
+      }
+      {
+        key = "<Leader>nl";
+        action = "<cmd>Noice last<cr>";
+        options.desc = "Last message";
+      }
+      {
+        key = "<Leader>ne";
+        action = "<cmd>Noice errors<cr>";
+        options.desc = "Errors";
+      }
+      {
+        key = "<Leader>Br";
+        action = "<cmd>BrunoRun<cr>";
+        options.desc = "Run";
+      }
+      {
+        key = "<Leader>Be";
+        action = "<cmd>BrunoEnv<cr>";
+        options.desc = "Environment";
+      }
+      {
+        key = "<Leader>Bs";
+        action = "<cmd>BrunoSearch<cr>";
+        options.desc = "Search";
+      }
+      {
+        key = "<Leader>fr";
+        action = "<cmd>Spectre<cr>";
+        options.desc = "Find & Replace";
+      }
+      # {
+      #  key = "<Leader>fw";
+      #  action =
+      # "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args{}<cr>";
+      # options.desc = "Find word";
+      # }
     ];
   };
 }

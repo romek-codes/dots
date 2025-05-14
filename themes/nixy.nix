@@ -88,12 +88,13 @@
 
     polarity = "dark";
     #image = ../home/system/hyprpaper/crow.png;
+    #image = ../home/system/hyprpaper/warhammer.png;
 
     image = pkgs.fetchurl {
       url =
         "https://raw.githubusercontent.com/dharmx/walls/main/digital/a_foggy_forest_with_trees_and_bushes.png";
-      sha256 =
-        "sha256-/4WAvfM8QF+BiONndgqor+STPYo1VJtB2l1HO897k10=sha256-90eUTc9GBf+NWSzKL+AXwCp+kPlaHVx3/tpfAMLrZbQ=";
+      sha256 = "sha256-/4WAvfM8QF+BiONndgqor+STPYo1VJtB2l1HO897k10=";
     };
+    #sha256 = "sha256-ZZt6t1svT5XREArRgrGD6AtLEmBa689HPenc/gYV4K0=";
   };
 }

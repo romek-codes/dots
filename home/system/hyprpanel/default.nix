@@ -1,6 +1,6 @@
 # Hyprpanel is the bar on top of the screen
 # Display informations like workspaces, battery, wifi, ...
-{ inputs, config, ... }:
+{ inputs, config, lib, ... }:
 let
   transparentButtons = config.theme.bar.transparentButtons;
 
@@ -26,6 +26,11 @@ let
   notificationOpacity = 90;
 
   location = config.var.location;
+  isLaptop = config.var.isLaptop or false;
+
+  rightItems = [ "systray" "volume" "bluetooth" ]
+    ++ (lib.optional isLaptop "battery")
+    ++ [ "network" "clock" "notifications" ];
 in {
 
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
@@ -42,15 +47,7 @@ in {
           "*" = {
             "left" = [ "dashboard" "workspaces" "windowtitle" ];
             "middle" = [ "media" "cava" ];
-            "right" = [
-              "systray"
-              "volume"
-              "bluetooth"
-              "battery"
-              "network"
-              "clock"
-              "notifications"
-            ];
+            "right" = rightItems;
           };
         };
       };

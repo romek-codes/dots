@@ -5,8 +5,8 @@
       mockDevIcons = true;
       modules = {
         icons = { };
-        # TODO: Learn how to use this
         bracketed = { };
+        files = { };
         git = { };
         diff = { };
         starter = { };
@@ -14,7 +14,14 @@
         notify = { lsp_progress.enable = false; };
         indentscope = { };
         cursorword = { };
-        comment = { };
+        comment = {
+          mappings = {
+            comment = "<leader>/";
+            comment_line = "<leader>/";
+            comment_visual = "<leader>/";
+            textobject = "<leader>/";
+          };
+        };
         starter = { };
       };
     };

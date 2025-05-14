@@ -12,7 +12,7 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     stylix.url = "github:danth/stylix";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    nixcord.url = "github:kaylorben/nixcord";
+    # nixcord.url = "github:kaylorben/nixcord"; #TODO: Maybe get this working properly sometime else, this just keeps causing issues.
     sops-nix.url = "github:Mic92/sops-nix";
     nixarr.url = "github:rasmus-kirk/nixarr";
     anyrun.url = "github:fufexan/anyrun/launch-prefix";
@@ -30,11 +30,6 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
@@ -65,9 +60,22 @@
             # inputs.nixos-hardware.nixosModules.omen-16-n0005ne # CHANGEME: check https://github.com/NixOS/nixos-hardware
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
-            ./hosts/lenovo-yoga/configuration.nix # CHANGEME: change the path to match your host folder
+            ./hosts/lenovo-yoga/configuration.nix
           ];
         };
+
+      meshify = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          {
+            nixpkgs.overlays = [ inputs.hyprpanel.overlay ];
+            _module.args = { inherit inputs; };
+          }
+          inputs.home-manager.nixosModules.home-manager
+          inputs.stylix.nixosModules.stylix
+          ./hosts/meshify/configuration.nix
+        ];
+      };
     };
   };
 }

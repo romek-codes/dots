@@ -9,6 +9,7 @@ let
   rounding = config.theme.rounding;
   blur = config.theme.blur;
   keyboardLayout = config.var.keyboardLayout;
+  extraKeyboardLayouts = config.var.extraKeyboardLayouts;
   background = "rgb(" + config.lib.stylix.colors.base00 + ")";
 in {
 
@@ -16,10 +17,6 @@ in {
     ./animations.nix
     ./bindings.nix
     ./polkitagent.nix
-    ./split-monitor-workspaces.nix
-    # ./keyboard-backlight.nix # CHANGEME: This is for my laptop only
-    # FIXME: Broken on unstable
-    # ./hyprspace.nix
     ./split-monitor-workspaces.nix
   ];
 
@@ -131,7 +128,6 @@ in {
         gaps_in = gaps-in;
         gaps_out = gaps-out;
         border_size = border-size;
-        layout = "master";
         "col.inactive_border" = lib.mkForce background;
       };
 
@@ -151,9 +147,8 @@ in {
       };
 
       master = {
-        new_status = true;
-        allow_small_split = true;
-        mfact = 0.5;
+        orientation = "center";
+        smart_resizing = true;
       };
 
       gestures = { workspace_swipe = true; };
@@ -204,7 +199,7 @@ in {
       layerrule = [ "noanim, launcher" "noanim, ^ags-.*" ];
 
       input = {
-        kb_layout = keyboardLayout;
+        kb_layout = "${keyboardLayout}${extraKeyboardLayouts}";
 
         kb_options = "caps:escape";
         follow_mouse = 1;

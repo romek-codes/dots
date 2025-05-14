@@ -9,11 +9,13 @@ let
   font-size = config.stylix.fonts.sizes.popups;
 in {
 
-  home.packages = with pkgs; [ rofimoji rofi-rbw-wayland ];
+  home.packages = with pkgs; [ rofimoji rofi-rbw-wayland rofi-calc ];
 
   programs.rofi = {
     enable = true;
+    package = pkgs.rofi-wayland;
     # TODO: Get rounding / border-radius working for rofi
-    theme = { window.border-radius = toString rounding + "px"; };
+    theme = let inherit (config.lib.formats.rasi) mkLiteral;
+    in { window = { border-radius = toString rounding + "px"; }; };
   };
 }

@@ -11,6 +11,7 @@
       + "/Workspace/dots"; # The path of the nixos configuration directory
 
     keyboardLayout = "us";
+    extraKeyboardLayouts = ",de,pl";
 
     location = "Berlin";
     timeZone = "Europe/Berlin";
@@ -24,6 +25,8 @@
 
     autoUpgrade = false;
     autoGarbageCollector = true;
+    isLaptop = false;
+    withGames = true;
   };
 
   # Let this here

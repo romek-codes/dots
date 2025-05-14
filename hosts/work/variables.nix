@@ -5,7 +5,7 @@
   ];
 
   config.var = {
-    hostname = "lenovo-yoga";
+    hostname = "meshify";
     username = "romek";
     configDirectory = "/home/" + config.var.username
       + "/Workspace/dots"; # The path of the nixos configuration directory
@@ -25,7 +25,7 @@
 
     autoUpgrade = false;
     autoGarbageCollector = true;
-    isLaptop = true;
+    isLaptop = false;
     withGames = false;
   };
 
