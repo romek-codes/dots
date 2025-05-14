@@ -92,8 +92,8 @@ This module provides a set of scripts to control the volume of the default audio
 
 Usefull quick scripts
 
-- `menu` - Open wofi with drun mode. (wofi)
-- `powermenu` - Open power dropdown menu. (wofi)
-- `quickmenu` - Open a dropdown menu with shortcuts and scripts. (wofi)
+- `menu` - Open rofi with drun mode. (rofi)
+- `powermenu` - Open power dropdown menu. (rofi)
+- `quickmenu` - Open a dropdown menu with shortcuts and scripts. (rofi)
 - `lock` - Lock the screen. (hyprlock)
 
