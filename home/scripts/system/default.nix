@@ -13,7 +13,7 @@ let
   menu = pkgs.writeShellScriptBin "menu"
     # bash
     ''
-      rofi -display-drun "Apps" -show-icons -show drun &
+      rofi -display-drun "Apps" -show-icons -show drun -sort
     '';
 
   bitwarden = pkgs.writeShellScriptBin "bitwarden"

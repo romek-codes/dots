@@ -28,7 +28,7 @@
     ./system/zathura
     ./system/mime
     ./system/udiskie
-    ./system/clipman
+    ./system/copyq
 
     ./gaming.nix
   ];

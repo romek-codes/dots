@@ -43,6 +43,11 @@ in {
     meson
   ];
 
+  xdg.configFile."electron-flags.conf".text = ''
+    --enable-features=UseOzonePlatform
+    --ozone-platform=wayland
+  '';
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -162,7 +167,7 @@ in {
         new_window_takes_over_fullscreen = 2;
       };
 
-      windowrulev2 = [
+      windowrule = [
         "float, tag:modal"
         "pin, tag:modal"
         "center, tag:modal"

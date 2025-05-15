@@ -31,11 +31,10 @@
       ",PRINT, exec, screenshot monitor" # Screenshot monitor
       "$shiftMod,PRINT, exec, screenshot window" # Screenshot window
       "ALT,PRINT, exec, screenshot region swappy" # Screenshot region then edit
-      "$mod,A, exec,  uwsm app -- zen-beta" # # Screenshot region then edit
+      "$mod,A, exec,screenshot region swappy" # Screenshot region then edit
 
       "$shiftMod,T, exec, hyprpanel-toggle" # Toggle hyprpanel
-      # TODO: Modify to use copyq instead of clipman
-      "$shiftMod,C, exec, clipboard" # Clipboard picker with wofi
+      "$mod,V,exec,rofi-copyq"
       "$shiftMod,E, exec, rofimoji" # Emoji picker with rofi
       "$mod,F2, exec, night-shift" # Toggle night shift
       "$mod,F3, exec, night-shift" # Toggle night shift

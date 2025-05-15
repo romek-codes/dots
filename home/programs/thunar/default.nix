@@ -25,6 +25,7 @@ in {
   };
 
   home.sessionVariables = {
+    DISPLAY = ":0";
     XDG_ICON_DIR = "${pkgs.whitesur-icon-theme}/share/icons/WhiteSur";
   };
 
