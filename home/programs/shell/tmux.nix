@@ -17,10 +17,11 @@ in {
     extraConfig = tmuxConf;
 
     plugins = with pkgs; [
-      tmuxPlugins.vim-tmux-navigator
-      # tmuxPlugins.resurrect
+      tmuxPlugins.resurrect
+      tmuxPlugins.continuum
       tmuxPlugins.sensible
-      tmuxPlugins.tokyo-night-tmux
+      tmuxPlugins.yank
+      # tmuxPlugins.tokyo-night-tmux
     ];
   };
 }

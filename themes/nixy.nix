@@ -55,8 +55,7 @@
     #    "f2cdcd"; # Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
     #};
 
-    base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/atelier-lakeside.yaml";
 
     cursor = {
       name = "phinger-cursors-light";
@@ -87,14 +86,12 @@
     };
 
     polarity = "dark";
-    #image = ../home/system/hyprpaper/crow.png;
-    #image = ../home/system/hyprpaper/warhammer.png;
+    #image = ../home/system/hyprpaper/wallpaper.png;
 
     image = pkgs.fetchurl {
       url =
         "https://raw.githubusercontent.com/dharmx/walls/main/digital/a_foggy_forest_with_trees_and_bushes.png";
       sha256 = "sha256-/4WAvfM8QF+BiONndgqor+STPYo1VJtB2l1HO897k10=";
     };
-    #sha256 = "sha256-ZZt6t1svT5XREArRgrGD6AtLEmBa689HPenc/gYV4K0=";
   };
 }

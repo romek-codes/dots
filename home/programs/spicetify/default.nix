@@ -12,9 +12,9 @@ in {
   programs.spicetify = {
     enable = true;
     theme = lib.mkForce spicePkgs.themes.dribbblish;
+    alwaysEnableDevTools = true;
 
     colorScheme = "custom";
-
     customColorScheme = {
       button = accent;
       button-active = accent;
@@ -25,12 +25,11 @@ in {
     };
 
     enabledExtensions = with spicePkgs.extensions; [
-      playlistIcons
-      lastfm
-      historyShortcut
-      hidePodcasts
+      # playlistIcons
+      # simpleBeautifulLyrics
+      # hidePodcasts
       adblock
-      #fullAppDisplayMod
+      # fullAppDisplay
       {
         src = "${
             pkgs.fetchFromGitHub {

@@ -13,95 +13,79 @@ let
   menu = pkgs.writeShellScriptBin "menu"
     # bash
     ''
-      #if pgrep rofi; then
-      #	sudo pkill rofi
-      #else
-      	rofi -display-drun "Apps" -show-icons -show drun &
-      #fi
+      rofi -display-drun "Apps" -show-icons -show drun &
     '';
 
   bitwarden = pkgs.writeShellScriptBin "bitwarden"
     # bash
     ''
-      #if pgrep rofi; then
-      #	sudo pkill rofi
-      #else
-      	rofi-rbw 
-      #fi
+      rofi-rbw 
     '';
 
   powermenu = pkgs.writeShellScriptBin "powermenu"
     # bash
     ''
-      #if pgrep rofi; then
-      #	sudo pkill rofi
-      #else
-        options=(
-          "󰌾 Lock"
-          "󰍃 Logout"
-          " Suspend"
-          "󰑐 Reboot"
-          "󰿅 Shutdown"
-        )
+      options=(
+        "󰌾 Lock"
+        "󰍃 Logout"
+        " Suspend"
+        "󰑐 Reboot"
+        "󰿅 Shutdown"
+      )
 
-        selected=$(printf '%s\n' "''${options[@]}" | rofi -i -p "Powermenu" -dmenu)
-        selected=''${selected:2}
+      selected=$(printf '%s\n' "''${options[@]}" | rofi -i -p "Powermenu" -dmenu)
+      selected=''${selected:2}
 
-        case $selected in
-          "Lock")
-            ${pkgs.hyprlock}/bin/hyprlock
-            ;;
-          "Logout")
-            hyprctl dispatch exit
-            ;;
-          "Suspend")
-            systemctl suspend
-            ;;
-          "Reboot")
-            systemctl reboot
-            ;;
-          "Shutdown")
-            systemctl poweroff
-            ;;
-        esac
-      #fi
+      case $selected in
+        "Lock")
+          ${pkgs.hyprlock}/bin/hyprlock
+          ;;
+        "Logout")
+          hyprctl dispatch exit
+          ;;
+        "Suspend")
+          systemctl suspend
+          ;;
+        "Reboot")
+          systemctl reboot
+          ;;
+        "Shutdown")
+          systemctl poweroff
+          ;;
+      esac
     '';
 
   quickmenu = pkgs.writeShellScriptBin "quickmenu"
     # bash
     ''
-      #if pgrep rofi; then
-      #	sudo pkill rofi
-      #else
-        options=(
-          " Nixy"
-          "󰖔 Night-shift"
-          "󰈊 Hyprpicker"
-          "󰅶 Caffeine"
-          "󰖂 Toggle VPN"
-        )
+      options=(
+        " Nixy"
+        "󰖔 Night-shift"
+        "󰈊 Hyprpicker"
+        "󰅶 Caffeine"
+        "󰖂 Toggle VPN"
+      )
 
-        selected=$(printf '%s\n' "''${options[@]}" | rofi -i -p "Quickmenu" -dmenu)
-        selected=''${selected:2}
+      selected=$(printf '%s\n' "''${options[@]}" | rofi -i -p "Quickmenu" -dmenu)
+      selected=''${selected:2}
 
-        case $selected in
-          "Caffeine")
-            caffeine
-            ;;
-          "Night-shift")
-            night-shift
-            ;;
-          "Nixy")
-              kitty zsh -c "nixy; echo; echo 'Press return to exit...'; read"
-            ;;
-          "Hyprpicker")
-            sleep 0.2 && ${pkgs.hyprpicker}/bin/hyprpicker -a
-            ;;
-          "Toggle VPN")
-            openvpn-toggle
-            ;;
-        esac
-      #fi
+      case $selected in
+        "Caffeine")
+          caffeine
+          ;;
+        "Night-shift")
+          night-shift
+          ;;
+        "Nixy")
+            kitty zsh -c "nixy; echo; echo 'Press return to exit...'; read"
+          ;;
+        "Hyprpicker")
+          sleep 0.2 && ${pkgs.hyprpicker}/bin/hyprpicker -a
+          ;;
+        "Toggle VPN")
+          openvpn-toggle
+          ;;
+      esac
     '';
 
   lock = pkgs.writeShellScriptBin "lock"

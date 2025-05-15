@@ -13,6 +13,7 @@
     ./programs/thunar
     ./programs/lazygit
     ./programs/duckduckgo-colorscheme
+    ./programs/photogimp
 
     # Scripts
     ./scripts # All scripts

@@ -25,8 +25,8 @@
 
     autoUpgrade = false;
     autoGarbageCollector = true;
-    isLaptop = true;
-    withGames = false;
+    isLaptop = true; # If true battery is shown in hyprbar, otherwise not
+    withGames = false; # If true, gaming related things are installed as well.
   };
 
   # Let this here

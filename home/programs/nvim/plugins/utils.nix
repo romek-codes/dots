@@ -13,7 +13,6 @@
         # FIXME: Temp issue solving
         settings.node_command = lib.getExe pkgs.nodejs_20;
       };
-      flash.enable = true;
       tmux-navigator.enable = true;
       todo-comments.enable = true;
       lualine = { enable = true; };

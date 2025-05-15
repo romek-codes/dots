@@ -38,11 +38,6 @@
     keymaps = [
       # General Mappings
       {
-        key = "s";
-        action = "<cmd>lua require('flash').jump()<cr>";
-        options.desc = "Flash";
-      }
-      {
         key = "K";
         action = "<cmd>lua vim.lsp.buf.hover()<cr>";
         options.desc = "LSP Hover";
@@ -54,23 +49,6 @@
       }
 
       # Tmux
-      {
-        key = "<C-h>";
-        action = "<cmd>TmuxNavigateLeft<cr>";
-      }
-      {
-        key = "<C-j>";
-        action = "<cmd>TmuxNavigateDown<cr>";
-      }
-      {
-        key = "<C-k>";
-        action = "<cmd>TmuxNavigateUp<cr>";
-      }
-      {
-        key = "<C-l>";
-        action = "<cmd>TmuxNavigateRight<cr>";
-      }
-
       # Disable Arrow Keys in Normal Mode
       {
         key = "<Up>";

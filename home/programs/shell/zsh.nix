@@ -11,6 +11,12 @@ in {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "laravel" "tmux" ];
+    };
+
     syntaxHighlighting = {
       enable = true;
       highlighters = [ "main" "brackets" "pattern" "regexp" "root" "line" ];

@@ -6,6 +6,8 @@
       "$ctrlMod,L, exec,  uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" # Lock
       "$mod,X, exec, powermenu" # Powermenu
       "$mod,P, exec, menu" # Launcher
+
+      "$mod,TAB,exec,${pkgs.rofi-wayland} -modes run,window -show window"
       "$ctrlMod,K, exec, bitwarden" # Rofi-rbw (Bitwarden)
       "$mod,C, exec, quickmenu" # Quickmenu
       "$mod,Z,exec,rofi -show calc -modi calc -no-show-match -no-sort"
@@ -19,6 +21,11 @@
       "$mod,j, movefocus, d" # Move focus Down
       "$mod,k, movefocus, u" # Move focus Up
       "$mod,l, movefocus, r" # Move focus Right
+
+      "$shiftMod,h,movewindow,l"
+      "$shiftMod,j,movewindow,d"
+      "$shiftMod,k,movewindow,u"
+      "$shiftMod,l,movewindow,r"
 
       "$mod,PRINT, exec, screenshot region" # Screenshot region
       ",PRINT, exec, screenshot monitor" # Screenshot monitor
