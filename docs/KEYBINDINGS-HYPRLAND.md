@@ -13,6 +13,7 @@
 | Lock | $ctrlModL |
 | Powermenu | SUPER + X |
 | Launcher | SUPER + P |
+| $mod,TAB,exec,${pkgs.rofi-wayland} -modes run,window -show window" | SUPER + TAB |
 | Rofi-rbw (Bitwarden) | $ctrlModK |
 | Quickmenu | SUPER + C |
 | $mod,Z,exec,rofi -show calc -modi calc -no-show-match -no-sort" | SUPER + Z |
