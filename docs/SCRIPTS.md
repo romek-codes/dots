@@ -92,7 +92,7 @@ This module provides a set of scripts to control the volume of the default audio
 
 Usefull quick scripts
 
-- `app-menu` - Open rofi with drun mode. (rofi)
+- `menu` - Open rofi with drun mode. (rofi)
 - `powermenu` - Open power dropdown menu. (rofi)
 - `command-palette` - Open a dropdown menu with shortcuts and scripts. (rofi)
 - `lock` - Lock the screen. (hyprlock)
