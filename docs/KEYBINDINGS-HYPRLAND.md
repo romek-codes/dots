@@ -14,12 +14,11 @@
 | Powermenu | SUPER + X |
 | Launcher | SUPER + P |
 | $mod,TAB,exec,${pkgs.rofi-wayland} -modes run,window -show window" | SUPER + TAB |
-| Rofi-rbw (Bitwarden) | $ctrlModK |
-| Quickmenu | SUPER + C |
-| $mod,Z,exec,rofi -show calc -modi calc -no-show-match -no-sort" | SUPER + Z |
+| Rofi-rbw (Bitwarden) | SUPER + B |
+| $mod,C,exec,rofi -show calc -modi calc -no-show-match -no-sort" | SUPER + C |
 | Change keyboard layout | modSPACE |
-| Move Window (mouse) | SUPER + mouse:272 |
-| Resize Window (mouse) | SUPER + R |
+| Move Window (mouse left click) | SUPER + mouse:272 |
+| Resize Window (mouse right click) | SUPER + mouse:273 |
 | Toggle Mute | XF86AudioMute |
 | Play/Pause Song | XF86AudioPlay |
 | Next Song | XF86AudioNext |
