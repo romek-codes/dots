@@ -53,6 +53,7 @@
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            # TODO: Make these modules shared to reuse for each machine.
             {
               nixpkgs.overlays = [ inputs.hyprpanel.overlay ];
               _module.args = { inherit inputs; };
@@ -60,6 +61,7 @@
             # inputs.nixos-hardware.nixosModules.omen-16-n0005ne # CHANGEME: check https://github.com/NixOS/nixos-hardware
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
+            inputs.lanzaboote.nixosModules.lanzaboote
             ./hosts/lenovo-yoga/configuration.nix
           ];
         };
@@ -73,6 +75,7 @@
           }
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
+          inputs.lanzaboote.nixosModules.lanzaboote
           ./hosts/meshify/configuration.nix
         ];
       };

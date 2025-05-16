@@ -1,5 +1,13 @@
 { pkgs, ... }: {
+  # for lanzaboote (secure boot support)
+  # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
+  environment.systemPackages = with pkgs; [ sbctl ];
+
   boot = {
+    # lanzaboote = {
+    #   enable = true;
+    #   pkiBundle = "/var/lib/sbctl";
+    # };
     bootspec.enable = true;
     loader = {
       efi.canTouchEfiVariables = true;
