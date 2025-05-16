@@ -17,23 +17,28 @@
     })
   ];
 
-  systemd.user.services.copyq = {
-    Unit = {
-      Description = "CopyQ, a clipboard manager";
-      Documentation = [ "man:copyq(5)" ];
-      Wants = [ "graphical-session.target" ];
-      Requires = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
+  services.copyq.enable = true;
 
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.copyq}/bin/copyq";
-      KillMode = "process";
-      KillSignal = "SIGINT";
-    };
+  wayland.windowManager.hyprland.settings.exec-once =
+    [ "systemctl --user start copyq" ];
 
-    Install = { WantedBy = [ "graphical-session.target" ]; };
-  };
-  xdg.configFile."copyq/copyq.conf".source = ./copyq.conf;
+  # systemd.user.services.copyq = {
+  #   Unit = {
+  #     Description = "CopyQ, a clipboard manager";
+  #     Documentation = [ "man:copyq(5)" ];
+  #     Wants = [ "graphical-session.target" ];
+  #     Requires = [ "graphical-session.target" ];
+  #     After = [ "graphical-session.target" ];
+  #   };
+  #
+  #   Service = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.copyq}/bin/copyq";
+  #     KillMode = "process";
+  #     KillSignal = "SIGINT";
+  #   };
+  #
+  #   Install = { WantedBy = [ "graphical-session.target" ]; };
+  # };
+  # xdg.configFile."copyq/copyq.conf".source = ./copyq.conf;
 }
