@@ -12,7 +12,6 @@ in {
   programs.spicetify = {
     enable = true;
     theme = lib.mkForce spicePkgs.themes.dribbblish;
-    alwaysEnableDevTools = true;
 
     colorScheme = "custom";
     customColorScheme = {

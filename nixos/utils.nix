@@ -25,14 +25,14 @@ in {
   i18n.defaultLocale = defaultLocale;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = extraLocale;
-    LC_IDENTIFICATION = extraLocale;
-    LC_MEASUREMENT = extraLocale;
+    LC_IDENTIFICATION = defaultLocale;  # Changed to English
+    LC_MEASUREMENT = extraLocale;       # Keep for metric
     LC_MONETARY = extraLocale;
     LC_NAME = extraLocale;
-    LC_NUMERIC = extraLocale;
-    LC_PAPER = extraLocale;
+    LC_NUMERIC = extraLocale;           # Keep for metric decimal separators
+    LC_PAPER = extraLocale;             # Keep for A4 paper
     LC_TELEPHONE = extraLocale;
-    LC_TIME = extraLocale;
+    LC_TIME = defaultLocale;            # Changed to English for date formats
   };
 
   services = {

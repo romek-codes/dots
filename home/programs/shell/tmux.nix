@@ -6,6 +6,7 @@ let
 in {
   programs.tmux = {
     enable = true;
+    aggressiveResize = true;
     mouse = true;
     shell = "${pkgs.zsh}/bin/zsh";
     baseIndex = 1;
@@ -21,6 +22,7 @@ in {
       tmuxPlugins.continuum
       tmuxPlugins.sensible
       tmuxPlugins.yank
+      tmuxPlugins.tmux-which-key
       # tmuxPlugins.tokyo-night-tmux
     ];
   };

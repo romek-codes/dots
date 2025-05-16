@@ -4,16 +4,15 @@
 #-
 #- - `menu` - Open rofi with drun mode. (rofi)
 #- - `powermenu` - Open power dropdown menu. (rofi)
-#- - `quickmenu` - Open a dropdown menu with shortcuts and scripts. (rofi)
+#- - `command-palette` - Open a dropdown menu with shortcuts and scripts. (rofi)
 #- - `lock` - Lock the screen. (hyprlock)
 { pkgs, ... }:
 
 let
-  # TODO: Remove the if checks, and watch if rofi opens multiple times when using it over a longer time period.
-  menu = pkgs.writeShellScriptBin "menu"
+  appMenu = pkgs.writeShellScriptBin "app-menu"
     # bash
     ''
-      rofi -display-drun "Apps" -show-icons -show drun -sort
+      rofi -display-drun "Apps" -show-icons -show drun -sort -auto-select
     '';
 
   bitwarden = pkgs.writeShellScriptBin "bitwarden"
@@ -55,41 +54,57 @@ let
       esac
     '';
 
-  quickmenu = pkgs.writeShellScriptBin "quickmenu"
+  commandPalette = pkgs.writeShellScriptBin "command-palette"
     # bash
     ''
       options=(
         " Nixy"
-        " Bitwarden"
-        "󰖔 Night-shift"
+        "󰌆 Bitwarden (SUPER + B)"
+        "󰀻 Search apps (SUPER + P)"
+        "󰖔 Night-shift (SUPER + F2)"
         "󰈊 Hyprpicker"
-        "󰹑 Screenshot"
+        "󰱼 Search files"
+        "󰱼 Search files recursively"
+        "󱂬 Search open windows (SUPER + TAB)"
+        "󰹑 Screenshot (SUPER + A / ALT + PRINTSCREEN)"
         "󰅶 Caffeine"
         "󰖂 Toggle VPN"
-        "󰐥 Powermenu"
-        "󰱰 Emoji picker"
-        "󰱰 Nerdfont emoji picker"
-        " Clipboard history"
-        " Calculator"
-        " File explorer"
-        " Lock screen"
-        "󰌌 Change keyboard layout"
+        "󰐥 Powermenu (SUPER + X)"
+        "󰱰 Nerdfont/Emoji picker (SUPER + SHIFT + E)"
+        " Clipboard history (SUPER + V)"
+        " Calculator (SUPER + C)"
+        " File explorer (SUPER + E)"
+        " Lock screen (CTRL + SUPER + L)"Change keyboard layout
+        "󰌌 Change keyboard layout (SUPER + SPACE)"
         "󰕾 Sound & Media controls"
-        "󰕾 Hyprland controls"
+        " Hyprland controls"
       )
 
-      selected=$(printf '%s\n' "''${options[@]}" | rofi -i -p "Quickmenu" -dmenu)
+      selected=$(printf '%s\n' "''${options[@]}" | rofi -i  -p "Command Palette | " -dmenu -auto-select)
+
       selected=''${selected:2}
 
       case $selected in
         "Hyprland controls")
           hyprland-controls
           ;;
-        "Night-shift")
+        "Search apps (SUPER + P)")
+          app-menu
+          ;;
+        "Search files recursively")
+          rofi -modi recursivebrowser -filebrowser-command 'uwsm app -- ${pkgs.xfce.thunar}/bin/thunar' -show recursivebrowser
+          ;;
+        "Search files")
+          rofi -modi filebrowser -filebrowser-command 'uwsm app -- ${pkgs.xfce.thunar}/bin/thunar' -show filebrowser 
+          ;;
+        "Search open windows (SUPER + TAB)")
+          rofi -modes run,window -show window
+          ;;
+        "Night-shift (SUPER + F2)")
           night-shift
           ;;
-        "Emoji picker")
-            rofimoji
+        "Nerdfont/Emoji picker (SUPER + SHIFT + E)")
+          rofimoji -f geometric_shapes geometric_shapes_extended nerd_font emojis
           ;;
         "Nixy")
             kitty zsh -c "nixy; echo; echo 'Press return to exit...'; read"
@@ -100,31 +115,31 @@ let
         "Toggle VPN")
           openvpn-toggle
           ;;
-        "Powermenu")
+        "Powermenu (SUPER + X)")
           powermenu
           ;;
-        "Bitwarden")
-          rofi-bitwarden
+        "Bitwarden (SUPER + B)")
+          rofi-rbw
           ;;
-        "Screenshot")
+        "Screenshot (SUPER + A / ALT + PRINTSCREEN)")
             screenshot region swappy
           ;;
         "Emoji picker")
           rofimoji
           ;;
-        "Clipboard history")
+        "Clipboard history (SUPER + V)")
           rofi-copyq
           ;;
-        "Calculator")
+        "Calculator (SUPER + C)")
             rofi -show calc -modi calc -no-show-match -no-sort
           ;;
-        "File explorer")
+        "File explorer (SUPER + E)")
             uwsm app -- ${pkgs.xfce.thunar}/bin/thunar
           ;;
-        "Lock screen")
+        "Lock screen (CTRL + SUPER + L)")
             uwsm app -- ${pkgs.hyprlock}/bin/hyprlock
           ;;
-        "Change keyboard layout")
+        "Change keyboard layout (SUPER + SPACE)")
             change-keyboard-layout
           ;;
         "Sound & Media controls")
@@ -137,12 +152,13 @@ let
     # bash
     ''
       options=(
-        "Toggle fullscreen"
-        "Toggle hyprpanel / bar"
+        "Toggle fullscreen (SUPER + F)"
+        "Toggle floating (SUPER + T)"
+        "Toggle hyprpanel / bar (SUPER + SHIFT + T)"
         ""
       )
 
-      selected=$(printf '%s\n' "''${options[@]}" | rofi -i -p "Quickmenu" -dmenu)
+      selected=$(printf '%s\n' "''${options[@]}" | rofi -i -p "Quickmenu" -dmenu -auto-select)
 
       case $selected in
         "Toggle hyprpanel / bar")
@@ -150,6 +166,9 @@ let
           ;;
         "Toggle fullscreen")
           hyprctl dispatch fullscreen
+          ;;
+        "Toggle floating")
+          hyprctl dispatch togglefloating
           ;;
       esac
     '';
@@ -166,7 +185,7 @@ let
         "Set brightness"
       )
 
-      selected=$(printf '%s\n' "''${options[@]}" | rofi -i -p "Quickmenu" -dmenu)
+      selected=$(printf '%s\n' "''${options[@]}" | rofi -i -p "Quickmenu" -dmenu -auto-select)
 
       case $selected in
         "Play/Pause")
@@ -216,4 +235,15 @@ let
       ${pkgs.hyprlock}/bin/hyprlock
     '';
 
-in { home.packages = [ menu bitwarden powermenu lock quickmenu hyprlandControls soundAndMediaControls changeKeyboardLayout ]; }
+in {
+  home.packages = [
+    appMenu
+    bitwarden
+    powermenu
+    lock
+    commandPalette
+    hyprlandControls
+    soundAndMediaControls
+    changeKeyboardLayout
+  ];
+}

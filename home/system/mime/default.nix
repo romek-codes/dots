@@ -3,7 +3,7 @@ with lib;
 let
   defaultApps = {
     browser = [ "firefox-beta.desktop" ];
-    text = [ "org.gnome.TextEditor.desktop" ];
+    text = [ "kitty nvim" ];
     image = [ "imv-dir.desktop" ];
     audio = [ "mpv.desktop" ];
     video = [ "mpv.desktop" ];

@@ -5,7 +5,7 @@
     ./bluetooth.nix
     ./fonts.nix
     ./home-manager.nix
-    ./docker.nix
+    # ./docker.nix
     ./nix.nix
     ./systemd-boot.nix
     ./sddm.nix
