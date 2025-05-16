@@ -35,6 +35,5 @@
 
     Install = { WantedBy = [ "graphical-session.target" ]; };
   };
-  # TODO: setup theming here
   xdg.configFile."copyq/copyq.conf".source = ./copyq.conf;
 }

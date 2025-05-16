@@ -33,11 +33,10 @@
       "ALT,PRINT, exec, screenshot region swappy" # Screenshot region then edit
       "$mod,A, exec,screenshot region swappy" # Screenshot region then edit
 
-      "$shiftMod,T, exec, hyprpanel-toggle" # Toggle hyprpanel
-      "$mod,V,exec,rofi-copyq"
-      "$shiftMod,E, exec, rofimoji" # Emoji picker with rofi
+      #"$shiftMod,T, exec, hyprpanel-toggle" # Toggle hyprpanel
+      "$mod,V,exec,rofi-copyq" # Clipboard history with rofi
+      #"$shiftMod,E, exec, rofimoji" # Emoji picker with rofi
       "$mod,F2, exec, night-shift" # Toggle night shift
-      "$mod,F3, exec, night-shift" # Toggle night shift
     ] ++ (builtins.concatLists (builtins.genList (i:
       let ws = i + 1;
       in [
@@ -55,7 +54,7 @@
       ",XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause" # Play/Pause Song
       ",XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next" # Next Song
       ",XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous" # Previous Song
-      ",switch:Lid Switch, exec, ${pkgs.hyprlock}/bin/hyprlock" # Lock when closing Lid
+      ",switch:Lid Switch, exec, uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" # Lock when closing Lid
     ];
 
     bindle = [

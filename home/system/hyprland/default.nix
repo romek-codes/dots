@@ -174,8 +174,7 @@ in {
         # telegram media viewer
         "float, title:^(Media viewer)$"
 
-        # Bitwarden extension
-        "float, title:^(.*Bitwarden Password Manager.*)$"
+        "float, class:^(nerdfont-fzf-popup)$"
 
         # gnome calculator
         "float, class:^(org.gnome.Calculator)$"
