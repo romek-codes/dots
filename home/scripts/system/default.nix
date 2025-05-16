@@ -128,7 +128,7 @@ let
           rofimoji
           ;;
         "Clipboard history (SUPER + V)")
-          rofi-copyq
+          rofi-cliphist
           ;;
         "Calculator (SUPER + C)")
             rofi -show calc -modi calc -no-show-match -no-sort

@@ -1,26 +1,20 @@
 { pkgs, ... }:
+let
+  rofi-cliphist = pkgs.writeShellScriptBin "rofi-cliphist"
+    # bash
+    ''
+      cliphist list | rofi -dmenu | cliphist decode | wl-copy
+    '';
+in {
 
-{
-  home.packages = with pkgs; [
-    copyq
-    (pkgs.python3Packages.buildPythonApplication {
-      pname = "rofi-copyq";
-      version = "0.1.0";
-      src = pkgs.fetchFromGitHub {
-        owner = "cjbassi";
-        repo = "rofi-copyq";
-        rev = "master";
-        sha256 = "sha256-xDxdKitVDonNhoNPMAoHizoaijQj9UQGSCPhWJOcB1w=";
-      };
-      propagatedBuildInputs = with pkgs.python3Packages; [ ];
-      doCheck = false;
-    })
+  home.packages = with pkgs; [ cliphist rofi-cliphist ];
+
+  # services.copyq.enable = true;
+
+  wayland.windowManager.hyprland.settings.exec-once = [
+    "wl-paste --type text --watch cliphist store # Stores only text data"
+    "wl-paste --type image --watch cliphist store # Stores only image data"
   ];
-
-  services.copyq.enable = true;
-
-  wayland.windowManager.hyprland.settings.exec-once =
-    [ "systemctl --user start copyq" ];
 
   # systemd.user.services.copyq = {
   #   Unit = {
