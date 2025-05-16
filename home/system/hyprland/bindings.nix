@@ -43,7 +43,7 @@
       in [
         "$mod,code:1${toString i}, split-workspace, ${toString ws}"
         "$mod SHIFT,code:1${toString i}, split-movetoworkspace, ${toString ws}"
-      ]) 9));
+      ]) 10));
 
     bindm = [
       "$mod,mouse:272, movewindow" # Move Window (mouse left click)

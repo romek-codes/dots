@@ -28,7 +28,8 @@
     ./system/zathura
     ./system/mime
     ./system/udiskie
-    ./system/copyq
+    ./system/cliphist
+    ./system/glance
 
     ./gaming.nix
   ];
@@ -49,16 +50,16 @@
     gnome-clocks
     gnome-text-editor
     mpv # Video player
-    figma-linux
+    # figma-linux
+    qdirstat # Storage management
+    dbgate # DBMS
 
     # Dev
-    go
     nodejs
     python3
-    jq
-    just
     pnpm
-    air
+    php # Laravel <3
+    php83Packages.composer
 
     # Utils
     zip
@@ -77,5 +78,17 @@
 
     # Dev & Testing
     chromium
+
+    gparted # partitions
+    gnome-disk-utility # mounting iso
+    calibre # ebooks
+    onlyoffice-bin # Office stuff
+    kdePackages.kdenlive # Video editor
+    kdePackages.breeze # Dark mode and theming with stylix for kdenlive
+    solaar # Logitech device manager
+    tldr # tldr manpages
+    peazip # for zip and rar files
+    aider-chat # AI
+    godot_4 # Gamedev
   ];
 }

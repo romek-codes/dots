@@ -200,6 +200,12 @@ in {
         "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
       ];
 
+      workspace = [
+        "1,on-created-empty:uwsm app -- ${pkgs.firefox-beta-bin}/bin/firefox-beta"
+        "2,on-created-empty:uwsm app -- ${pkgs.kitty}/bin/kitty"
+        "10,on-created-empty:uwsm app -- ${pkgs.kitty}/bin/kitty btop"
+      ];
+
       layerrule = [ "noanim, launcher" "noanim, ^ags-.*" ];
 
       input = {
