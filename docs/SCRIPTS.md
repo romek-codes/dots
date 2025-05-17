@@ -3,6 +3,17 @@
 
 Scripts are located in the 'home/scripts' folder. Home-manager add those in the user's path.
 
+## blue-light-filter
+
+blue-light-filter is a feature that reduces the amount of blue light emitted by your screen, which can help reduce eye strain and improve sleep quality. This module provides a set of scripts to control blue-light-filter on your system.
+It use hyprsunset to control the screen temperature.
+
+- `blue-light-filter-on` activates blue-light-filter.
+- `blue-light-filter-off` deactivates blue-light-filter.
+- `blue-light-filter` toggles blue-light-filter.
+- `blue-light-filter-status` checks if blue-light-filter is active. (0/1)
+- `blue-light-filter-status-icon` checks if blue-light-filter is active. (icon)
+
 ## Brightness
 
 This module provides a set of scripts to control the brightness of the screen.
@@ -11,14 +22,6 @@ This module provides a set of scripts to control the brightness of the screen.
 - `brightness-down` decreases the brightness by 5%.
 - `brightness-set [value]` sets the brightness to the given value.
 - `brightness-change [up|down] [value]` increases or decreases the brightness by the given value.
-
-## Suspend and screen lock
-
-Suspend and screen lock is a simple script that toggles hypridle (disable suspend & screenlock).
-
-- `suspend-and-screen-lock-status` - Check if hypridle is running. (0/1)
-- `suspend-and-screen-lock-status-icon` - Check if hypridle is running. (icon)
-- `suspend-and-screen-lock` - Toggle hypridle.
 
 ## Hyprfocus
 
@@ -44,17 +47,6 @@ This module provides a script to search for Nerd Fonts icons using fzf.
 
 - `nerdfont-fzf` - Search for Nerd Fonts icons using fzf.
 
-## blue-light-filter
-
-blue-light-filter is a feature that reduces the amount of blue light emitted by your screen, which can help reduce eye strain and improve sleep quality. This module provides a set of scripts to control blue-light-filter on your system.
-It use hyprsunset to control the screen temperature.
-
-- `blue-light-filter-on` activates blue-light-filter.
-- `blue-light-filter-off` deactivates blue-light-filter.
-- `blue-light-filter` toggles blue-light-filter.
-- `blue-light-filter-status` checks if blue-light-filter is active. (0/1)
-- `blue-light-filter-status-icon` checks if blue-light-filter is active. (icon)
-
 ## Nixy
 
 Nixy is a simple script that I use to manage my NixOS system. It's a simple script that provides a menu to rebuild, upgrade, update, collect garbage, clean boot menu, etc. 
@@ -62,6 +54,8 @@ Nixy is a simple script that I use to manage my NixOS system. It's a simple scri
 - `nixy` - UI wizard to manage the system.
 - `nixy rebuild` - Rebuild the system.
 - `nixy ...` - ... see the script for more commands.
+
+
 
 ## OpenVPN
 
@@ -85,6 +79,14 @@ This module provides a set of scripts to control the volume of the default audio
 - `sound-down` decreases the volume by 5%.
 - `sound-set [value]` sets the volume to the given value.
 - `sound-toggle` toggles the mute state of the default audio sink.
+
+## Suspend and screen lock
+
+suspend-and-screen-lock is a simple script that toggles hypridle (disable suspend & screenlock).
+
+- `suspend-and-screen-lock-status` - Check if hypridle is running. (0/1)
+- `suspend-and-screen-lock-status-icon` - Check if hypridle is running. (icon)
+- `suspend-and-screen-lock` - Toggle hypridle.
 
 ## System
 
