@@ -74,7 +74,7 @@ in {
                   type = "releases";
                   cache = "1d";
                   repositories = [
-                    "NixOS/nixpkgs"
+                    #"NixOS/nixpkgs"
                     "immich-app/immich"
                     "syncthing/syncthing"
                     "Aider-AI/aider"
