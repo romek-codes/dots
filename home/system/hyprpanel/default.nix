@@ -130,11 +130,11 @@ in {
       menus.dashboard.shortcuts.left.shortcut1.command = "zen";
       menus.dashboard.shortcuts.left.shortcut1.tooltip = "Zen";
       menus.dashboard.shortcuts.left.shortcut2.icon = "󰅶";
-      menus.dashboard.shortcuts.left.shortcut2.command = "caffeine";
-      menus.dashboard.shortcuts.left.shortcut2.tooltip = "Caffeine";
+      menus.dashboard.shortcuts.left.shortcut2.command = "suspend-and-screen-lock";
+      menus.dashboard.shortcuts.left.shortcut2.tooltip = "Suspend and screen lock";
       menus.dashboard.shortcuts.left.shortcut3.icon = "󰖔";
-      menus.dashboard.shortcuts.left.shortcut3.command = "night-shift";
-      menus.dashboard.shortcuts.left.shortcut3.tooltip = "Night-shift";
+      menus.dashboard.shortcuts.left.shortcut3.command = "blue-light-filter";
+      menus.dashboard.shortcuts.left.shortcut3.tooltip = "blue-light-filter";
       menus.dashboard.shortcuts.left.shortcut4.icon = "";
       menus.dashboard.shortcuts.left.shortcut4.command = "menu";
       menus.dashboard.shortcuts.left.shortcut4.tooltip = "Search Apps";

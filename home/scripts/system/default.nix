@@ -61,13 +61,13 @@ let
         " Nixy"
         "󰌆 Bitwarden (SUPER + B)"
         "󰀻 Search apps (SUPER + P)"
-        "󰖔 Night-shift (SUPER + F2)"
-        "󰈊 Hyprpicker"
+        "󰖔 Toggle blue light filter (SUPER + F2)"
+        "󰈊 Color picker"
         "󰱼 Search files"
         "󰱼 Search files recursively"
         "󱂬 Search open windows (SUPER + TAB)"
         "󰹑 Screenshot (SUPER + A / ALT + PRINTSCREEN)"
-        "󰅶 Caffeine"
+        "󰅶 Toggle suspend & screenlock"
         "󰖂 Toggle VPN"
         "󰐥 Powermenu (SUPER + X)"
         "󰱰 Nerdfont/Emoji picker (SUPER + SHIFT + E)"
@@ -80,11 +80,14 @@ let
         " Hyprland controls"
       )
 
-      selected=$(printf '%s\n' "''${options[@]}" | rofi -i  -p "Command Palette | " -dmenu -auto-select)
+      selected=$(printf '%s\n' "''${options[@]}" | rofi -i  -p "Command Palette | " -dmenu)
 
       selected=''${selected:2}
 
       case $selected in
+        "Toggle suspend & screenlock")
+          suspend-and-screen-lock
+          ;;
         "Hyprland controls")
           hyprland-controls
           ;;
@@ -100,8 +103,8 @@ let
         "Search open windows (SUPER + TAB)")
           rofi -modes run,window -show window
           ;;
-        "Night-shift (SUPER + F2)")
-          night-shift
+        "Toggle blue light filter (SUPER + F2)")
+          blue-light-filter
           ;;
         "Nerdfont/Emoji picker (SUPER + SHIFT + E)")
           rofimoji -f geometric_shapes geometric_shapes_extended nerd_font emojis
@@ -109,7 +112,7 @@ let
         "Nixy")
             kitty zsh -c "nixy; echo; echo 'Press return to exit...'; read"
           ;;
-        "Hyprpicker")
+        "Color picker")
           sleep 0.2 && ${pkgs.hyprpicker}/bin/hyprpicker -a
           ;;
         "Toggle VPN")

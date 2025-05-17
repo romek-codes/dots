@@ -35,7 +35,7 @@
       "$shiftMod,T, exec, hyprpanel-toggle" # Toggle hyprpanel
       "$mod,V,exec,rofi-cliphist" # Clipboard history with rofi
       "$shiftMod,E, exec, rofimoji -f geometric_shapes geometric_shapes_extended nerd_font emojis" # Nerdfont and emoji picker with rofi
-      "$mod,F2, exec, night-shift" # Toggle night shift
+      "$mod,F2, exec, blue-light-filter" # Toggle blue light
       "$mod,TAB, exec, rofi -modes run,window -show window" # Search open windows
 
     ] ++ (builtins.concatLists (builtins.genList (i:

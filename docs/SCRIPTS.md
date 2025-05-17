@@ -12,13 +12,13 @@ This module provides a set of scripts to control the brightness of the screen.
 - `brightness-set [value]` sets the brightness to the given value.
 - `brightness-change [up|down] [value]` increases or decreases the brightness by the given value.
 
-## Caffeine
+## Suspend and screen lock
 
-Caffeine is a simple script that toggles hypridle (disable suspend & screenlock).
+Suspend and screen lock is a simple script that toggles hypridle (disable suspend & screenlock).
 
-- `caffeine-status` - Check if hypridle is running. (0/1)
-- `caffeine-status-icon` - Check if hypridle is running. (icon)
-- `caffeine` - Toggle hypridle.
+- `suspend-and-screen-lock-status` - Check if hypridle is running. (0/1)
+- `suspend-and-screen-lock-status-icon` - Check if hypridle is running. (icon)
+- `suspend-and-screen-lock` - Toggle hypridle.
 
 ## Hyprfocus
 
@@ -44,16 +44,16 @@ This module provides a script to search for Nerd Fonts icons using fzf.
 
 - `nerdfont-fzf` - Search for Nerd Fonts icons using fzf.
 
-## Night-Shift
+## blue-light-filter
 
-Night-Shift is a feature that reduces the amount of blue light emitted by your screen, which can help reduce eye strain and improve sleep quality. This module provides a set of scripts to control Night-Shift on your system.
+blue-light-filter is a feature that reduces the amount of blue light emitted by your screen, which can help reduce eye strain and improve sleep quality. This module provides a set of scripts to control blue-light-filter on your system.
 It use hyprsunset to control the screen temperature.
 
-- `night-shift-on` activates Night-Shift.
-- `night-shift-off` deactivates Night-Shift.
-- `night-shift` toggles Night-Shift.
-- `night-shift-status` checks if Night-Shift is active. (0/1)
-- `night-shift-status-icon` checks if Night-Shift is active. (icon)
+- `blue-light-filter-on` activates blue-light-filter.
+- `blue-light-filter-off` deactivates blue-light-filter.
+- `blue-light-filter` toggles blue-light-filter.
+- `blue-light-filter-status` checks if blue-light-filter is active. (0/1)
+- `blue-light-filter-status-icon` checks if blue-light-filter is active. (icon)
 
 ## Nixy
 
@@ -62,8 +62,6 @@ Nixy is a simple script that I use to manage my NixOS system. It's a simple scri
 - `nixy` - UI wizard to manage the system.
 - `nixy rebuild` - Rebuild the system.
 - `nixy ...` - ... see the script for more commands.
-
-
 
 ## OpenVPN
 
