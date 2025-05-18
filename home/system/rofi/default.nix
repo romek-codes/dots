@@ -23,4 +23,10 @@ in {
     theme = let inherit (config.lib.formats.rasi) mkLiteral;
     in { window = { border-radius = toString rounding + "px"; }; };
   };
+
+  # https://github.com/fdw/rofi-rbw/issues/107
+  xdg.configFile."rofi-rbw.rc".text = ''
+    keybindings Alt+Meta+1:type:username:tab:password,Alt+Meta+2:type:username,Alt+Meta+3:type:password,Alt+Meta+4:type:totp,Alt+Meta+c:copy:password,Alt+Meta+u:copy:username,Alt+Meta+t:copy:totp,Alt+Meta+m::menu
+  '';
+
 }
