@@ -39,10 +39,12 @@
       "$mod,TAB, exec, rofi -modes run,window -show window" # Search open windows
 
     ] ++ (builtins.concatLists (builtins.genList (i:
-      let ws = i + 1;
+      let
+        ws = i + 1;
+        key = if ws == 10 then "0" else toString ws;
       in [
-        "$mod,code:1${toString i}, split-workspace, ${toString ws}"
-        "$mod SHIFT,code:1${toString i}, split-movetoworkspace, ${toString ws}"
+        "$mod,${key}, split-workspace, ${toString ws}"
+        "$shiftMod,${key}, split-movetoworkspace, ${toString ws}"
       ]) 10));
 
     bindm = [

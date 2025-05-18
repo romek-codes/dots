@@ -29,7 +29,6 @@
     ./system/mime
     ./system/udiskie
     ./system/cliphist
-    ./system/glance
 
     ./gaming.nix
   ];

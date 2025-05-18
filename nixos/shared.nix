@@ -14,5 +14,6 @@
     ./tailscale.nix
     ./hyprland.nix
     ./steam.nix
+    ./glance.nix
   ];
 }

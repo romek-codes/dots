@@ -110,7 +110,7 @@ let
           rofimoji -f geometric_shapes geometric_shapes_extended nerd_font emojis
           ;;
         "Nixy")
-            kitty zsh -c "nixy; echo; echo 'Press return to exit...'; read"
+          nixy
           ;;
         "Color picker")
           sleep 0.2 && ${pkgs.hyprpicker}/bin/hyprpicker -a

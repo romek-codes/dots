@@ -62,8 +62,8 @@ in {
 
     settings = {
       "$mod" = "SUPER";
-      "$shiftMod" = "SUPER_SHIFT";
-      "$ctrlMod" = "SUPER_CTRL";
+      "$shiftMod" = "SUPERSHIFT";
+      "$ctrlMod" = "SUPERCTRL";
 
       exec-once = [
         "dbus-update-activation-environment --systemd --all &"
@@ -200,11 +200,14 @@ in {
         "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
       ];
 
-      workspace = [
-        "1,on-created-empty:uwsm app -- ${pkgs.firefox-beta-bin}/bin/firefox-beta"
-        "2,on-created-empty:uwsm app -- ${pkgs.kitty}/bin/kitty"
-        "10,on-created-empty:uwsm app -- ${pkgs.kitty}/bin/kitty btop"
-      ];
+      # TODO: This causes workspaces 2 and 10 to open on my left vertical monitor,
+      # probably need to define which is the main monitor?
+      # workspace = [
+      #   "name:1,desc:Acer Technologies X28 ##GTIYMxgwAAt+" # doesnt work?
+      #   "1,on-created-empty:uwsm app -- ${pkgs.firefox-beta-bin}/bin/firefox-beta"
+      #   "2,on-created-empty:uwsm app -- ${pkgs.kitty}/bin/kitty"
+      #   "10,on-created-empty:uwsm app -- ${pkgs.kitty}/bin/kitty btop"
+      # ];
 
       layerrule = [ "noanim, launcher" "noanim, ^ags-.*" ];
 

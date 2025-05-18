@@ -87,13 +87,13 @@ in {
       theme.bar.menus.menu.media.card.tint = 90;
 
       bar.launcher.icon = "";
-      bar.workspaces.show_numbered = false;
-      bar.workspaces.workspaces = 5;
+      bar.workspaces.show_numbered = true;
+      bar.workspaces.workspaces = 1;
       bar.workspaces.numbered_active_indicator = "color";
-      bar.workspaces.monitorSpecific = false;
+      bar.workspaces.monitorSpecific = true;
       bar.workspaces.applicationIconEmptyWorkspace = "";
-      bar.workspaces.showApplicationIcons = true;
-      bar.workspaces.showWsIcons = true;
+      # bar.workspaces.showApplicationIcons = true;
+      # bar.workspaces.showWsIcons = true;
 
       bar.windowtitle.label = true;
       bar.volume.label = false;
@@ -130,11 +130,13 @@ in {
       menus.dashboard.shortcuts.left.shortcut1.command = "zen";
       menus.dashboard.shortcuts.left.shortcut1.tooltip = "Zen";
       menus.dashboard.shortcuts.left.shortcut2.icon = "󰅶";
-      menus.dashboard.shortcuts.left.shortcut2.command = "suspend-and-screen-lock";
-      menus.dashboard.shortcuts.left.shortcut2.tooltip = "Suspend and screen lock";
+      menus.dashboard.shortcuts.left.shortcut2.command =
+        "suspend-and-screen-lock";
+      menus.dashboard.shortcuts.left.shortcut2.tooltip =
+        "Suspend and screen lock";
       menus.dashboard.shortcuts.left.shortcut3.icon = "󰖔";
       menus.dashboard.shortcuts.left.shortcut3.command = "blue-light-filter";
-      menus.dashboard.shortcuts.left.shortcut3.tooltip = "blue-light-filter";
+      menus.dashboard.shortcuts.left.shortcut3.tooltip = "Blue light filter";
       menus.dashboard.shortcuts.left.shortcut4.icon = "";
       menus.dashboard.shortcuts.left.shortcut4.command = "menu";
       menus.dashboard.shortcuts.left.shortcut4.tooltip = "Search Apps";
