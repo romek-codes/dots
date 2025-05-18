@@ -57,98 +57,105 @@ let
   commandPalette = pkgs.writeShellScriptBin "command-palette"
     # bash
     ''
-      options=(
-        " Nixy"
-        "󰌆 Bitwarden (SUPER + B)"
-        "󰀻 Search apps (SUPER + P)"
-        "󰖔 Toggle blue light filter (SUPER + F2)"
-        "󰈊 Color picker"
-        "󰱼 Search files"
-        "󰱼 Search files recursively"
-        "󱂬 Search open windows (SUPER + TAB)"
-        "󰹑 Screenshot (SUPER + A / ALT + PRINTSCREEN)"
-        "󰅶 Toggle suspend & screenlock"
-        "󰖂 Toggle VPN"
-        "󰐥 Powermenu (SUPER + X)"
-        "󰱰 Nerdfont/Emoji picker (SUPER + SHIFT + E)"
-        " Clipboard history (SUPER + V)"
-        " Calculator (SUPER + C)"
-        " File explorer (SUPER + E)"
-        " Lock screen (CTRL + SUPER + L)"Change keyboard layout
-        "󰌌 Change keyboard layout (SUPER + SPACE)"
-        "󰕾 Sound & Media controls"
-        " Hyprland controls"
-      )
+      selected=$(rofi -i -p "Command Palette | " -dmenu < <(
+          printf " Nixy\0meta\x1fnixy nix package manager\n"
+          printf "󰌆 Bitwarden (SUPER + B)\0meta\x1fbw password manager passwords\n"
+          printf "󰀻 Search apps (SUPER + P)\0meta\x1fapp applications program software launcher\n"
+          printf "󰖔 Toggle blue light filter (SUPER + F2)\0meta\x1fblf night mode eye strain redshift\n"
+          printf "󰈊 Color picker\0meta\x1fcp pick color hex rgb\n"
+          printf "󰱼 Search files\0meta\x1fsf find file browse directory\n"
+          printf "󰱼 Search files recursively\0meta\x1fsfr find recursive deep file search\n"
+          printf "󱂬 Search open windows (SUPER + TAB)\0meta\x1fsow window switcher alt-tab\n"
+          printf "󰹑 Screenshot (SUPER + A / ALT + PRINTSCREEN)\0meta\x1fss screen capture print\n"
+          printf "󰅶 Toggle suspend & screenlock\0meta\x1ftss sleep lock screen\n"
+          printf "󰖂 Toggle VPN\0meta\x1ftvpn vpn network security\n"
+          printf "󰐥 Powermenu (SUPER + X)\0meta\x1fpm power shutdown reboot logout\n"
+          printf "󰱰 Nerdfont/Emoji picker (SUPER + SHIFT + E)\0meta\x1fnep emoji icon symbol\n"
+          printf " Clipboard history (SUPER + V)\0meta\x1fch copy paste clipboard\n"
+          printf " Calculator (SUPER + C)\0meta\x1fcalc math compute formula\n"
+          printf " File explorer (SUPER + E)\0meta\x1ffe files browse folder directory\n"
+          printf " Lock screen (CTRL + SUPER + L)\0meta\x1fls lock security\n"
+          printf "󰌌 Change keyboard layout (SUPER + SPACE)\0meta\x1fckl keyboard input language\n"
+          printf "󰕾 Sound & Media controls\0meta\x1fsmc audio volume media playback\n"
+          printf " Hyprland controls\0meta\x1fhypr hyprland wm\n"
+      ))
 
-      selected=$(printf '%s\n' "''${options[@]}" | rofi -i  -p "Command Palette | " -dmenu)
+      # If no selection was made (user pressed Escape), exit gracefully
+      [ -z "$selected" ] && exit 0
 
-      selected=''${selected:2}
+      # Extract just the displayed text without the icon (if there is one)
+      if [[ "$selected" =~ ^[[:space:]]*[^[:space:]] ]]; then
+        selected=''${selected:2}
+      fi
 
-      case $selected in
-        "Toggle suspend & screenlock")
-          suspend-and-screen-lock
-          ;;
-        "Hyprland controls")
-          hyprland-controls
-          ;;
-        "Search apps (SUPER + P)")
-          app-menu
-          ;;
-        "Search files recursively")
-          rofi -modi recursivebrowser -filebrowser-command 'uwsm app -- ${pkgs.xfce.thunar}/bin/thunar' -show recursivebrowser
-          ;;
-        "Search files")
-          rofi -modi filebrowser -filebrowser-command 'uwsm app -- ${pkgs.xfce.thunar}/bin/thunar' -show filebrowser 
-          ;;
-        "Search open windows (SUPER + TAB)")
-          rofi -modes run,window -show window
-          ;;
-        "Toggle blue light filter (SUPER + F2)")
-          blue-light-filter
-          ;;
-        "Nerdfont/Emoji picker (SUPER + SHIFT + E)")
-          rofimoji -f geometric_shapes geometric_shapes_extended nerd_font emojis
-          ;;
-        "Nixy")
-          nixy
-          ;;
-        "Color picker")
-          sleep 0.2 && ${pkgs.hyprpicker}/bin/hyprpicker -a
-          ;;
-        "Toggle VPN")
-          openvpn-toggle
-          ;;
-        "Powermenu (SUPER + X)")
-          powermenu
-          ;;
-        "Bitwarden (SUPER + B)")
-          rofi-rbw
-          ;;
-        "Screenshot (SUPER + A / ALT + PRINTSCREEN)")
-            screenshot region swappy
-          ;;
-        "Emoji picker")
-          rofimoji
-          ;;
-        "Clipboard history (SUPER + V)")
-          rofi-cliphist
-          ;;
-        "Calculator (SUPER + C)")
-            rofi -show calc -modi calc -no-show-match -no-sort
-          ;;
-        "File explorer (SUPER + E)")
-            uwsm app -- ${pkgs.xfce.thunar}/bin/thunar
-          ;;
-        "Lock screen (CTRL + SUPER + L)")
-            uwsm app -- ${pkgs.hyprlock}/bin/hyprlock
-          ;;
-        "Change keyboard layout (SUPER + SPACE)")
-            change-keyboard-layout
-          ;;
-        "Sound & Media controls")
-            sound-and-media-controls
-          ;;
-      esac
+      command_found=0
+
+      if [[ "$selected" == *"Toggle suspend & screenlock"* ]]; then
+        suspend-and-screen-lock
+        command_found=1
+      elif [[ "$selected" == *"Hyprland controls"* ]]; then
+        hyprland-controls
+        command_found=1
+      elif [[ "$selected" == *"Search apps"* ]]; then
+        app-menu
+        command_found=1
+      elif [[ "$selected" == *"Search files recursively"* ]]; then
+        rofi -modi recursivebrowser -filebrowser-command 'thunar' -show recursivebrowser
+        command_found=1
+      elif [[ "$selected" == *"Search files"* && "$selected" != *"recursively"* ]]; then
+        rofi -modi filebrowser -filebrowser-command 'thunar' -show filebrowser 
+        command_found=1
+      elif [[ "$selected" == *"Search open windows"* ]]; then
+        rofi -modes run,window -show window
+        command_found=1
+      elif [[ "$selected" == *"Toggle blue light filter"* ]]; then
+        blue-light-filter
+        command_found=1
+      elif [[ "$selected" == *"Nerdfont"* || "$selected" == *"Emoji picker"* ]]; then
+        rofimoji -f geometric_shapes geometric_shapes_extended nerd_font emojis
+        command_found=1
+      elif [[ "$selected" == *"Nixy"* ]]; then
+        nixy
+        command_found=1
+      elif [[ "$selected" == *"Color picker"* ]]; then
+        sleep 0.2 && hyprpicker -a
+        command_found=1
+      elif [[ "$selected" == *"Toggle VPN"* ]]; then
+        openvpn-toggle
+        command_found=1
+      elif [[ "$selected" == *"Powermenu"* ]]; then
+        powermenu
+        command_found=1
+      elif [[ "$selected" == *"Bitwarden"* ]]; then
+        rofi-rbw
+        command_found=1
+      elif [[ "$selected" == *"Screenshot"* ]]; then
+        screenshot region swappy
+        command_found=1
+      elif [[ "$selected" == *"Clipboard history"* ]]; then
+        rofi-cliphist
+        command_found=1
+      elif [[ "$selected" == *"Calculator"* ]]; then
+        rofi -show calc -modi calc -no-show-match -no-sort
+        command_found=1
+      elif [[ "$selected" == *"File explorer"* ]]; then
+        thunar
+        command_found=1
+      elif [[ "$selected" == *"Lock screen"* ]]; then
+        hyprlock
+        command_found=1
+      elif [[ "$selected" == *"Change keyboard layout"* ]]; then
+        change-keyboard-layout
+        command_found=1
+      elif [[ "$selected" == *"Sound & Media controls"* ]]; then
+        sound-and-media-controls
+        command_found=1
+      fi
+
+      # Show notification if no command was found
+      if [ $command_found -eq 0 ]; then
+        notify-send "Command Palette" "No matching command found for: $selected" -i dialog-error
+      fi
     '';
 
   hyprlandControls = pkgs.writeShellScriptBin "hyprland-controls"
