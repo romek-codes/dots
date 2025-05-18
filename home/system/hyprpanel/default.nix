@@ -87,13 +87,13 @@ in {
       theme.bar.menus.menu.media.card.tint = 90;
 
       bar.launcher.icon = "";
-      bar.workspaces.show_numbered = true;
       bar.workspaces.workspaces = 1;
       bar.workspaces.numbered_active_indicator = "color";
       bar.workspaces.monitorSpecific = true;
       bar.workspaces.applicationIconEmptyWorkspace = "";
-      # bar.workspaces.showApplicationIcons = true;
-      # bar.workspaces.showWsIcons = true;
+      bar.workspaces.show_numbered = false;
+      bar.workspaces.showApplicationIcons = true;
+      bar.workspaces.showWsIcons = true;
 
       bar.windowtitle.label = true;
       bar.volume.label = false;
