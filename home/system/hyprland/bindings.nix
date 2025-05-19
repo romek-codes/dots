@@ -4,27 +4,39 @@
       "$mod,RETURN, exec, uwsm app -- ${pkgs.kitty}/bin/kitty" # Kitty (Terminal)
       "$mod,E, exec,  uwsm app -- ${pkgs.xfce.thunar}/bin/thunar" # Thunar (File explorer)
       "$ctrlMod,L, exec,  uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" # Lock
-      "$mod,X, exec, powermenu" # Powermenu
-      "$mod,P, exec, app-menu" # Launcher
+      "$mod,X, exec, powermenu" # Power options
+      "$mod,P, exec, app-menu" # Launch an app
 
-      "$mod,TAB,exec,${pkgs.rofi-wayland} -modes run,window -show window"
+      "$mod,TAB,exec,${pkgs.rofi-wayland} -modes run,window -show window" # See currently opened windows
       "$mod,B, exec, bitwarden" # Rofi-rbw (Bitwarden)
-      "$mod,C,exec,rofi -show calc -modi calc -no-show-match -no-sort"
+      "$mod,C,exec,rofi -show calc -modi calc -no-show-match -no-sort" # Calculator
       ''
         $mod,SPACE,exec,switch=$(hyprctl devices -j | jq -r '.keyboards[] | .active_keymap' | uniq -c | [ $(wc -l) -eq 1 ] && echo "next" || echo "0"); for device in $(hyprctl devices -j | jq -r '.keyboards[] | .name'); do hyprctl switchxkblayout $device $switch; done; activeKeymap=$(hyprctl devices -j | jq -r '.keyboards[0] | .active_keymap'); if [ $switch == "0" ]; then resetStr="(reset)"; else resetStr=""; fi; hyprctl notify -1 1500 0 "$activeKeymap $resetStr"; # Change keyboard layout
       ''
       "$mod,Q, killactive," # Close window
       "$mod,T, togglefloating," # Toggle Floating
       "$mod,F, fullscreen" # Toggle Fullscreen
-      "$mod,h, movefocus, l" # Move focus left
-      "$mod,j, movefocus, d" # Move focus Down
-      "$mod,k, movefocus, u" # Move focus Up
-      "$mod,l, movefocus, r" # Move focus Right
 
-      "$shiftMod,h,movewindow,l"
-      "$shiftMod,j,movewindow,d"
-      "$shiftMod,k,movewindow,u"
-      "$shiftMod,l,movewindow,r"
+      "$mod,h, movefocus, l" # Move focus left
+      "$mod,j, movefocus, d" # Move focus down
+      "$mod,k, movefocus, u" # Move focus up
+      "$mod,l, movefocus, r" # Move focus right
+
+      "$shiftMod,h,movewindow,l" # Move window left
+      "$shiftMod,j,movewindow,d" # Move window down
+      "$shiftMod,k,movewindow,u" # Move window up
+      "$shiftMod,l,movewindow,r" # Move window right
+
+      # For arrows
+      "$mod,left, movefocus, l" # Move focus left
+      "$mod,down, movefocus, d" # Move focus down
+      "$mod,up, movefocus, u" # Move focus up
+      "$mod,right, movefocus, r" # Move focus right
+
+      "$shiftMod,left,movewindow,l" # Move window left
+      "$shiftMod,down,movewindow,d" # Move window down
+      "$shiftMod,up,movewindow,u" # Move window up
+      "$shiftMod,right,movewindow,r" # Move window right
 
       "$mod,PRINT, exec, screenshot region" # Screenshot region
       ",PRINT, exec, screenshot monitor" # Screenshot monitor
@@ -57,7 +69,7 @@
       ",XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause" # Play/Pause Song
       ",XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next" # Next Song
       ",XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous" # Previous Song
-      ",switch:Lid Switch, exec, uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" # Lock when closing Lid
+      ",switch:Lid Switch, exec, uwsm app -- ${pkgs.hyprlock}/bin/hyprlock"
     ];
 
     bindr = [
