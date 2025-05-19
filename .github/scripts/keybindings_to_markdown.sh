@@ -7,14 +7,14 @@
 KEYBINDINGS_FILE="./docs/KEYBINDINGS-HYPRLAND.md"
 
 function getList() {
-	content=$1
-	name=$2
-	list_start=$(echo "$content" | sed "/$name = \[/!d;=;Q")
-	list=$(echo "$content" | tail +"$list_start")
-	list_end=$(echo "$list" | sed '/\]/!d;=;Q')
-	list=$(echo "$list" | head -n"$list_end")
+  content=$1
+  name=$2
+  list_start=$(echo "$content" | sed "/$name = \[/!d;=;Q")
+  list=$(echo "$content" | tail +"$list_start")
+  list_end=$(echo "$list" | sed '/\]/!d;=;Q')
+  list=$(echo "$list" | head -n"$list_end")
 
-	echo "$list"
+  echo "$list"
 }
 
 [[ -f "./home/system/hyprland/bindings.nix" ]] || (echo "File ./home/system/hyprland/bindings.nix not found" && exit 1)
@@ -30,7 +30,7 @@ bindl=$(getList "$config" "bindl")
 # Bindle (lock, repetition)
 bindle=$(getList "$config" "bindle")
 # Bindr (only one keypress)
-bindr=$(getList "$config" "bindle")
+bindr=$(getList "$config" "bindr")
 
 # Join the lists:
 keybindings=$(echo -e "$bindr\n$bind\n$bindm\n$bindl\n$bindle" | grep '"')
@@ -47,16 +47,17 @@ echo "| -- | -- |" >>"$KEYBINDINGS_FILE"
 echo "| Switch Workspace | SUPER + {Number} |" >>"$KEYBINDINGS_FILE"
 echo "| Move app to Workspace | SHIFT + SUPER + {Number} |" >>"$KEYBINDINGS_FILE"
 echo "$keybindings" | while read -r line; do
-	comment=$(echo "$line" | cut -d\# -f2)
-	line=$(echo "$line" | cut -d\# -f1)
-	line=${line:1:${#line}-3}
-	mod=$(echo "$line" | cut -d, -f1)
-	key=$(echo "$line" | cut -d, -f2)
-	# dispatcher=$(echo "$line" | cut -d, -f3)
-	# params=$(echo "$line" | cut -d, -f4)
+  comment=$(echo "$line" | cut -d\# -f2)
+  line=$(echo "$line" | cut -d\# -f1)
+  line=${line:1:${#line}-3}
+  mod=$(echo "$line" | cut -d, -f1)
+  key=$(echo "$line" | cut -d, -f2)
+  # dispatcher=$(echo "$line" | cut -d, -f3)
+  # params=$(echo "$line" | cut -d, -f4)
 
-	[[ $mod == '$mod' ]] && mod="SUPER + "
-	[[ $mod == '$shiftMod' ]] && mod="SHIFT + SUPER + "
+  [[ $mod == '$mod' ]] && mod="SUPER + "
+  [[ $mod == '$shiftMod' ]] && mod="SHIFT + SUPER + "
+  [[ $mod == '$ctrlMod' ]] && mod="CTRL + SUPER + "
 
-	echo "| ${comment:1} | $mod$key |" >>"$KEYBINDINGS_FILE"
+  echo "| ${comment:1} | $mod$key |" >>"$KEYBINDINGS_FILE"
 done
