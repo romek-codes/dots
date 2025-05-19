@@ -5,12 +5,11 @@ in {
 
   home.packages = with pkgs; [ bat ripgrep tldr sesh ];
 
-  home.sessionPath = [ "$HOME/go/bin" ];
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
+    dotDir = ".config/zsh";
 
     oh-my-zsh = {
       enable = true;
@@ -41,10 +40,10 @@ in {
     #and 
     #nix search nixpkgs nvidia_x11
     # sessionVariables = {
-    #   LD_LIBRARY_PATH = lib.concatStringsSep ":" [
-    #     "${pkgs.linuxPackages_latest.nvidia_x11_beta}/lib" # change the package name according to nix search result
-    #     "$LD_LIBRARY_PATH"
-    #   ];
+    # LD_LIBRARY_PATH = lib.concatStringsSep ":" [
+    #   "${pkgs.linuxPackages_latest.nvidia_x11_beta}/lib" # change the package name according to nix search result
+    #   "$LD_LIBRARY_PATH"
+    # ];
     # };
 
     shellAliases = {

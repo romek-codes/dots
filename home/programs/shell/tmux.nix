@@ -1,9 +1,14 @@
 # Tmux is a terminal multiplexer that allows you to run multiple terminal sessions in a single window.
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 let
   # plugins = pkgs.tmuxPlugins // pkgs.callPackage ./custom-plugins.nix { };
+  background = "#${config.lib.stylix.colors.base02}";
   tmuxConf = lib.readFile ./tmux.conf;
+  # TODO: How to override this ugly ahh yellow for active ?
+  fullTmuxConf = tmuxConf + "setw -g window-status-current-style bg="
+    + background;
 in {
+
   programs.tmux = {
     enable = true;
     aggressiveResize = true;
@@ -15,7 +20,7 @@ in {
     terminal = "kitty";
     keyMode = "vi";
 
-    extraConfig = tmuxConf;
+    extraConfig = fullTmuxConf;
 
     plugins = with pkgs; [
       tmuxPlugins.resurrect
@@ -25,5 +30,11 @@ in {
       tmuxPlugins.tmux-which-key
       # tmuxPlugins.tokyo-night-tmux
     ];
+  };
+
+  # stylix better looking status bar
+  home.sessionVariables = {
+    BASE16_TMUX_OPTION_ACTIVE = 1;
+    BASE16_TMUX_OPTION_STATUSBAR = 1;
   };
 }
