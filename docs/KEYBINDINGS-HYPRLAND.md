@@ -8,13 +8,10 @@
 | -- | -- |
 | Switch Workspace | SUPER + {Number} |
 | Move app to Workspace | SHIFT + SUPER + {Number} |
-| Sound Up | XF86AudioRaiseVolume |
-| Sound Down | XF86AudioLowerVolume |
-| Brightness Up | XF86MonBrightnessUp |
-| Brightness Down | XF86MonBrightnessDown |
+| Command Palette | SUPER SUPER_L |
 | Kitty (Terminal) | SUPER + RETURN |
 | Thunar (File explorer) | SUPER + E |
-| Lock | $ctrlModL |
+| Lock | CTRL + SUPER + L |
 | Power options | SUPER + X |
 | Launch an app | SUPER + P |
 | See currently opened windows | SUPER + TAB |
@@ -27,7 +24,7 @@
 | Play/Pause Song | XF86AudioPlay |
 | Next Song | XF86AudioNext |
 | Previous Song | XF86AudioPrev |
-| ,switch:Lid Switch, exec, uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" | switch:Lid Switch |
+| Lock screen on lid closed (laptop) | switch:Lid Switch |
 | Sound Up | XF86AudioRaiseVolume |
 | Sound Down | XF86AudioLowerVolume |
 | Brightness Up | XF86MonBrightnessUp |
