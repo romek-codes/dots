@@ -8,14 +8,18 @@
 | -- | -- |
 | Switch Workspace | SUPER + {Number} |
 | Move app to Workspace | SHIFT + SUPER + {Number} |
+| Sound Up | XF86AudioRaiseVolume |
+| Sound Down | XF86AudioLowerVolume |
+| Brightness Up | XF86MonBrightnessUp |
+| Brightness Down | XF86MonBrightnessDown |
 | Kitty (Terminal) | SUPER + RETURN |
 | Thunar (File explorer) | SUPER + E |
 | Lock | $ctrlModL |
-| Powermenu | SUPER + X |
-| Launcher | SUPER + P |
-| $mod,TAB,exec,${pkgs.rofi-wayland} -modes run,window -show window" | SUPER + TAB |
+| Power options | SUPER + X |
+| Launch an app | SUPER + P |
+| See currently opened windows | SUPER + TAB |
 | Rofi-rbw (Bitwarden) | SUPER + B |
-| $mod,C,exec,rofi -show calc -modi calc -no-show-match -no-sort" | SUPER + C |
+| Calculator | SUPER + C |
 | Change keyboard layout | modSPACE |
 | Move Window (mouse left click) | SUPER + mouse:272 |
 | Resize Window (mouse right click) | SUPER + mouse:273 |
@@ -23,7 +27,7 @@
 | Play/Pause Song | XF86AudioPlay |
 | Next Song | XF86AudioNext |
 | Previous Song | XF86AudioPrev |
-| Lock when closing Lid | switch:Lid Switch |
+| ,switch:Lid Switch, exec, uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" | switch:Lid Switch |
 | Sound Up | XF86AudioRaiseVolume |
 | Sound Down | XF86AudioLowerVolume |
 | Brightness Up | XF86MonBrightnessUp |
