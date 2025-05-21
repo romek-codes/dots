@@ -11,9 +11,10 @@
     ./sddm.nix
     ./users.nix
     ./utils.nix
-    ./tailscale.nix
+    # ./tailscale.nix
     ./hyprland.nix
     ./steam.nix
     ./glance.nix
+    ./syncthing.nix
   ];
 }

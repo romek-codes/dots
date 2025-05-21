@@ -78,6 +78,7 @@ let
           printf "󰌌 Change keyboard layout (SUPER + SPACE)\0meta\x1fckl keyboard input language\n"
           printf "󰕾 Sound & Media controls\0meta\x1fsmc audio volume media playback\n"
           printf " Hyprland controls\0meta\x1fhypr hyprland wm\n"
+          printf " Open terminal (SUPER + ENTER)\0meta\x1fterm kitty wm\n"
       ))
 
       # If no selection was made (user pressed Escape), exit gracefully
@@ -92,6 +93,9 @@ let
 
       if [[ "$selected" == *"Toggle suspend & screenlock"* ]]; then
         suspend-and-screen-lock
+        command_found=1
+      elif [[ "$selected" == *"Open terminal"* ]]; then
+        uwsm app -- ${pkgs.kitty}/bin/kitty
         command_found=1
       elif [[ "$selected" == *"Hyprland controls"* ]]; then
         hyprland-controls
@@ -130,7 +134,7 @@ let
         rofi-rbw
         command_found=1
       elif [[ "$selected" == *"Screenshot"* ]]; then
-        screenshot region swappy
+        sleep 0.2 && screenshot region swappy
         command_found=1
       elif [[ "$selected" == *"Clipboard history"* ]]; then
         rofi-cliphist
@@ -139,10 +143,10 @@ let
         rofi -show calc -modi calc -no-show-match -no-sort
         command_found=1
       elif [[ "$selected" == *"File explorer"* ]]; then
-        thunar
+        uwsm app -- ${pkgs.xfce.thunar}/bin/thunar
         command_found=1
       elif [[ "$selected" == *"Lock screen"* ]]; then
-        hyprlock
+        uwsm app -- ${pkgs.hyprlock}/bin/hyprlock
         command_found=1
       elif [[ "$selected" == *"Change keyboard layout"* ]]; then
         change-keyboard-layout
