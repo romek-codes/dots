@@ -57,9 +57,6 @@
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/atelier-lakeside.yaml";
 
-    # TODO: Override for tmux status bar, how to override directly only in tmux?
-    override = { base0A = "#151A1C"; };
-
     cursor = {
       name = "phinger-cursors-light";
       package = pkgs.phinger-cursors;

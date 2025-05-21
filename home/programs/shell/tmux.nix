@@ -1,12 +1,13 @@
 # Tmux is a terminal multiplexer that allows you to run multiple terminal sessions in a single window.
 { lib, pkgs, config, ... }:
 let
-  # plugins = pkgs.tmuxPlugins // pkgs.callPackage ./custom-plugins.nix { };
   background = "#${config.lib.stylix.colors.base02}";
   tmuxConf = lib.readFile ./tmux.conf;
-  # TODO: How to override styles set by tinted tmux / stylix?
-  fullTmuxConf = tmuxConf + "setw -g window-status-current-style bg="
-    + background;
+  styleConf = ''
+    set-window-option -g window-status-current-style "fg=${background},bg=#1f292e"
+    set-window-option -g window-status-current-format "#[fg=#1f292e,bg=${background},nobold,noitalics,nounderscore]#[fg=#516d7b,bg=${background}] #I #[fg=#516d7b,bg=${background},bold] #W#{?window_zoomed_flag,*Z,} #[fg=${background},bg=#1f292e,nobold,noitalics,nounderscore]"
+  '';
+  fullTmuxConf = tmuxConf + styleConf;
 in {
 
   programs.tmux = {
@@ -19,8 +20,7 @@ in {
     terminal = "kitty";
     keyMode = "vi";
     clock24 = true;
-
-    extraConfig = fullTmuxConf;
+    extraConfig = lib.mkAfter fullTmuxConf;
 
     plugins = with pkgs; [
       tmuxPlugins.resurrect
