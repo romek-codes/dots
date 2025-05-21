@@ -23,11 +23,11 @@ let
       if [[ $(pidof "hypridle") ]]; then
         systemctl --user stop hypridle.service
         title="󰅶  Suspend and screen lock deactivated"
-        description="Suspend and screen lock is now deactivated! Your screen will turn off automatically."
+        description="Suspend and screen lock is now deactivated! Your screen will not turn off automatically."
       else
         systemctl --user start hypridle.service
         title="󰾪  Suspend and screen lock activated"
-        description="Suspend and screen lock is now active! Your screen will not turn off automatically."
+        description="Suspend and screen lock is now active! Your screen will turn off automatically."
       fi
 
       notif "Suspend and screen lock" "$title" "$description"
