@@ -16,5 +16,6 @@
     ./steam.nix
     ./glance.nix
     ./syncthing.nix
+    ./pam.nix
   ];
 }
