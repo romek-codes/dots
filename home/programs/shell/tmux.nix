@@ -4,7 +4,7 @@ let
   # plugins = pkgs.tmuxPlugins // pkgs.callPackage ./custom-plugins.nix { };
   background = "#${config.lib.stylix.colors.base02}";
   tmuxConf = lib.readFile ./tmux.conf;
-  # TODO: How to override this ugly ahh yellow for active ?
+  # TODO: How to override styles set by tinted tmux / stylix?
   fullTmuxConf = tmuxConf + "setw -g window-status-current-style bg="
     + background;
 in {
@@ -15,10 +15,10 @@ in {
     mouse = true;
     shell = "${pkgs.zsh}/bin/zsh";
     baseIndex = 1;
-    prefix = "C-s";
     escapeTime = 0;
     terminal = "kitty";
     keyMode = "vi";
+    clock24 = true;
 
     extraConfig = fullTmuxConf;
 
@@ -28,13 +28,12 @@ in {
       tmuxPlugins.sensible
       tmuxPlugins.yank
       tmuxPlugins.tmux-which-key
-      # tmuxPlugins.tokyo-night-tmux
     ];
   };
 
   # stylix better looking status bar
   home.sessionVariables = {
-    BASE16_TMUX_OPTION_ACTIVE = 1;
-    BASE16_TMUX_OPTION_STATUSBAR = 1;
+    TINTED_TMUX_OPTION_ACTIVE = "1";
+    TINTED_TMUX_OPTION_STATUSBAR = "1";
   };
 }

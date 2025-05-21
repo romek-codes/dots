@@ -33,9 +33,9 @@ in {
   gtk.gtk3.bookmarks = [
     "file:///home/${user}/Downloads Downloads"
     "file:///home/${user}/Pictures Pictures"
-    "file:///home/${user}/nextcloud Nextcloud"
-    "file:///home/${user}/.config/nixos NixOS"
-    "file:///home/${user}/dev Development"
+    "file:///home/${user}/SyncthingMain SyncthingMain"
+    "file:///home/${user}/Workspace/dots dots"
+    "file:///home/${user}/Workspace Workspace"
   ];
 
   home.file.".config/xarchiver/xarchiverrc".text = ''
