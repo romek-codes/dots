@@ -15,6 +15,7 @@
     ./plugins/utils.nix
     ./plugins/obsidian.nix
     ./plugins/noice.nix
+    ./plugins/highlight-colors.nix
 
     ./options.nix
     ./keymaps.nix
